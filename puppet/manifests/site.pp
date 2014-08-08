@@ -58,6 +58,18 @@ exec {'create-database':
   require => Package['mysql-server'],
 }
 
+exec {'link-ssh':
+  command => 'ln -s /ssh/id_rsa /home/vagrant/.ssh/id_rsa && ln -s /ssh/id_rsa.pub /home/vagrant/.ssh/id_rsa.pub',
+  path => '/bin',
+  require => Exec['update'],
+}
+
+exec {'ssh-perms':
+  command => 'chmod 600 /home/vagrant/.ssh/id_rsa /home/vagrant/.ssh/id_rsa.pub',
+  path => '/bin',
+  require => Exec['link-ssh'],
+}
+
 file {'/etc/php5/conf.d/upload_limits.ini':
   ensure => present,
   owner => root, group => root, mode => 444,
