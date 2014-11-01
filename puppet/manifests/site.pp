@@ -78,7 +78,7 @@ file {'/etc/php5/conf.d/upload_limits.ini':
   notify => Service['apache2'],
 }
 
-package {['lamp-server^', 'apache2', 'php-pear', 'php5-mysql', 'php5-gd', 'mysql-server', 'php5-xdebug', 'git']:
+package {['lamp-server^', 'apache2', 'php-pear', 'php5-mysql', 'php5-gd', 'mysql-server', 'php5-xdebug', 'git', 'php5-curl']:
   ensure => present,
   require => Exec['update'],
 }
