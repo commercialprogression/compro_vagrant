@@ -26,6 +26,7 @@ echo "</VirtualHost>" | tee -a /etc/apache2/sites-available/drupal.conf
 a2dissite 000-default.conf
 a2ensite drupal.conf
 a2enmod rewrite
+rm /var/www/html/index.html
 
 # PHP
 apt-get install -y php5 php5-mysql libapache2-mod-php5 php5-gd php5-xdebug php5-curl
@@ -35,6 +36,10 @@ echo "xdebug.remote_handler=dbgp" | tee -a /etc/php5/mods-available/xdebug.ini
 echo "xdebug.remote_host=192.168.33.1" | tee -a /etc/php5/mods-available/xdebug.ini
 echo "xdebug.remote_port=9000" | tee -a /etc/php5/mods-available/xdebug.ini
 echo "xdebug.remote_autostart=0" | tee -a /etc/php5/mods-available/xdebug.ini
+
+# SSH
+ln -s /ssh/id_rsa /home/vagrant/.ssh/id_rsa && ln -s /ssh/id_rsa.pub /home/vagrant/.ssh/id_rsa.pub
+chmod 600 /home/vagrant/.ssh/id_rsa /home/vagrant/.ssh/id_rsa.pub
 
 # Drush
 wget http://files.drush.org/drush.phar
