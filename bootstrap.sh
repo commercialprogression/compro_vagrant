@@ -7,7 +7,9 @@ apt-get update
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 apt-get install -y mysql-server mysql-client
-mysql -u root -proot -e "create database drupal"
+mysql -u root -proot -e "CREATE DATABASE drupal"
+mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION"
+sudo sed -i '/bind-address/c #bind-address = 127.0.0.1' /etc/mysql/my.cnf
 
 # Apache
 apt-get install -y apache2
@@ -37,14 +39,6 @@ echo "xdebug.remote_host=192.168.33.1" | tee -a /etc/php5/mods-available/xdebug.
 echo "xdebug.remote_port=9000" | tee -a /etc/php5/mods-available/xdebug.ini
 echo "xdebug.remote_autostart=0" | tee -a /etc/php5/mods-available/xdebug.ini
 
-# SSH
-ln -s /ssh/id_rsa /home/vagrant/.ssh/id_rsa && ln -s /ssh/id_rsa.pub /home/vagrant/.ssh/id_rsa.pub
-chmod 600 /home/vagrant/.ssh/id_rsa /home/vagrant/.ssh/id_rsa.pub
-
-# Drush
-wget http://files.drush.org/drush.phar
-chmod +x drush.phar
-sudo mv drush.phar /usr/local/bin/drush
-
 # Clean up
+service mysql restart
 service apache2 restart
