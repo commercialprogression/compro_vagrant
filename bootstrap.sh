@@ -68,10 +68,10 @@ chmod +x /var/www/cgi-bin/php-cgi-$PHP
 wget https://xdebug.org/files/xdebug-2.2.7.tgz
 tar xvfz xdebug-2.2.7.tgz
 cd xdebug-2.2.7
-/opt/phpfarm/inst/php-5.4.32/bin/phpize
+/opt/phpfarm/inst/php-$PHP/bin/phpize
 ./configure --enable-xdebug --with-php-config=/opt/phpfarm/inst/php-$PHP/bin/php-config
 make && make install
-echo "zend_extension=\"/opt/phpfarm/inst/php-$PHP/lib/php/extensions/debug-non-zts-20100525/xdebug.so\"" >> /opt/phpfarm/inst/php-5.4.32/lib/php.ini
+echo "zend_extension=\"/opt/phpfarm/inst/php-$PHP/lib/php/extensions/debug-non-zts-20100525/xdebug.so\"" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
 echo "xdebug.default_enable=1" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
 echo "xdebug.remote_enable=1" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
 echo "xdebug.remote_handler=dbgp" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
