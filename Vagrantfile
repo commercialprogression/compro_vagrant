@@ -3,7 +3,7 @@
 
 # Configuration
 Vagrant.configure(2) do |config|
-  # Debian Jessie
+  # Ubuntu 14.04
   config.vm.box = "ubuntu/trusty64"
   # Set IP address to access the box from
   config.vm.network "private_network", ip: "192.168.33.10"
