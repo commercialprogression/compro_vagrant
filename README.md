@@ -1,7 +1,7 @@
 # Compro vagrant file for local Drupal development
 
 ## Purpose
-Ideally, all client sites would run on a secure up to date version of PHP. While we do recommend this, sometimes it isn't possible for a variety of reasons. The repo exists mostly to properly test sites running on older version of PHP.
+Ideally, all client sites would run on a secure up to date version of PHP. While we do recommend this, sometimes it isn't possible for a variety of reasons. The repo exists mostly to properly test sites running on older versions of PHP.
 
 ## Usage
 ```
