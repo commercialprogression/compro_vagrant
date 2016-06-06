@@ -7,7 +7,7 @@ The environment runs Ubuntu 14.04. If no version of PHP is specified when buildi
 
 ## Usage
 ```
-PHP=5.3.29 vagrant up
+PHP=5.4.32 vagrant up
 ```
 or
 ```
