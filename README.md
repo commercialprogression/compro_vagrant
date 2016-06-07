@@ -18,6 +18,6 @@ PHP version can be set to any [version](http://php.net/releases/).
 
 Site can be accessed at 192.168.33.10.
 
-Database is accessible remotely, so you can use something like MySQL Workbench on the host machine.
+Database is accessible remotely, so you can use something like MySQL Workbench on the host machine to import a production dump.
 
-Drush, Git, and build tools like Grunt can be run outside the VM. SSH'ing into the machine shouldn't be necessary, unless you prefer to work that way.
+Drush, Git, and build tools like Grunt can be run outside the VM by updating the settings.php file to connect the database to the vagrant IP address (192.168.33.10) instead of "localhost". SSH'ing into the machine shouldn't be necessary, unless you prefer to work that way.
