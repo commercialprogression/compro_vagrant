@@ -40,6 +40,7 @@ if [ -z "$1" ]; then
   echo "xdebug.remote_host=192.168.33.1" | tee -a /etc/php5/mods-available/xdebug.ini
   echo "xdebug.remote_port=9000" | tee -a /etc/php5/mods-available/xdebug.ini
   echo "xdebug.remote_autostart=0" | tee -a /etc/php5/mods-available/xdebug.ini
+  echo "xdebug.max_nesting_level=250" | tee -a /etc/php5/mods-available/xdebug.ini
 else
   PHP=$1
 
@@ -101,6 +102,7 @@ else
   echo "xdebug.remote_host=192.168.33.1" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
   echo "xdebug.remote_port=9000" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
   echo "xdebug.remote_autostart=0" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
+  echo "xdebug.max_nesting_level=250" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
 fi
 
 # Clean up
