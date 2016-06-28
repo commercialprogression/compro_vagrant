@@ -103,6 +103,29 @@ else
   echo "xdebug.remote_autostart=0" >> /opt/phpfarm/inst/php-$PHP/lib/php.ini
 fi
 
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+sudo mv composer.phar /usr/local/bin/composer
+php -r "unlink('composer-setup.php');"
+
+curl https://drupalconsole.com/installer -L -o drupal.phar
+sudo mv drupal.phar /usr/local/bin/drupal
+chmod +x /usr/local/bin/drupal
+drupal init --override
+
+php -r "readfile('http://files.drush.org/drush.phar');" > drush
+chmod +x drush
+sudo mv drush /usr/local/bin
+drush init
+
+sudo apt-get install -y git
+
+ssh -o StrictHostKeyChecking=no git@github.com
+git clone https://github.com/commercialprogression/compro_utils.git
+sudo chown -R root:root compro_utils
+sudo mv compro_utils /usr/local/bin/
+PATH="/usr/local/bin/compro_utils/bin:$PATH"
+
 # Clean up
 service mysql restart
 service apache2 restart
